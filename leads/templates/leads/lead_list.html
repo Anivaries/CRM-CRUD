@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+    <h1 class="visually-hidden">Leads</h1>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm pb-2 border-bottom">
+            <h2 class="">Leads</h2>
+          </div>
+          <div class="col-sm pb-2 border-bottom ">
+            <a class="float-end" href="{% url 'leads:lead-create'%}" class="icon-link">Create Lead</a>
+          </div>
+        </div>
+    </div>
+    <div class="container px-4 py-5" id="featured-3">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">  
+            {% if request.user.is_organiser%} 
+            {% endif %}
+        {% for lead in object_list %}
+            <div class="feature col">
+                <div class="feature-icon bg-primary bg-gradient">
+                    <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"></use></svg>
+                </div>
+                <h2>{{ lead.first_name }}</h2>
+                <p>{{ lead.first_name }} {{ lead.last_name }}. Age: {{ lead.age }} 
+                </p>
+                <a href="{% url 'leads:lead-detail' lead.pk %}" class="icon-link">
+                Details
+                    <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use>
+                    </svg>
+                </a>     
+            </div>            
+        {% endfor %}
+            {% if unassigned_leads.exists %}
+            {% for lead in unassigned_leads %}
+            <h1>Unassigned leads</h1>
+                <div class="feature col">
+                    <div class="feature-icon bg-primary bg-gradient">
+                        <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"></use></svg>
+                    </div>
+                    <h2>{{ lead.first_name }}</h2>
+                    <p>{{ lead.first_name }} {{ lead.last_name }}. Age: {{ lead.age }} 
+                    </p>
+                    <a href="{% url 'leads:assign-agent' lead.pk %}" class="icon-link">
+                    Details
+                        <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use>
+                        </svg>
+                    </a>     
+                </div> 
+                {% endfor%}
+            {% endif %}
+    {% endblock %}
+
+
+  {% comment %} </div>
+    <a href="{% url 'leads:lead-create'%}">Create a new lead</a>
+    <hr>
+    <h1>This is all of our leads</h1> 
+        {% for lead in object_list %}
+            <div class="lead">
+                <a href="{% url 'leads:lead-detail' lead.pk %}"> {{ lead.first_name }} {{ lead.last_name }}</a>. Age: {{ lead.age }}
+            </div>
+        {% endfor %}
+{% endblock %} {% endcomment %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{%block content %}
+
+        <h1>Leads go here</h1>
+        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+        <p class="lead">
+          <a href="{% url 'leads:lead-list' %}" class="btn btn-lg btn-primary fw-bold border-white bg-dark">leads</a>
+        </p>
+        <br>
+        <h1>Agents go here</h1>
+        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+        <p class="lead">
+          <a href="{% url 'agents:agent-list' %}" class="btn btn-lg btn-primary fw-bold border-white bg-dark">agents</a>
+        </p>
+
+    
+    </body>
+{% endblock %}

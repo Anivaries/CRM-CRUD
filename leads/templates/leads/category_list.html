@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Lead Count</th>
+
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Unassigned</td>
+                <td>{{unassigned_lead_count}}</td>
+            </tr>
+            {% for category in category_list%}
+                <tr>
+                    <a href="{% url 'leads:category-detail' category.pk %}"><td>{{ category.name }}</td>
+                    <td>TODO</td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content%}
+
+
+unassigned_lead_count
